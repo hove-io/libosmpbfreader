@@ -3,6 +3,7 @@ libosmpbfreader
 
 A simple C++ library to read OpenStreetMap binary files
 
+It is released under the BSD licence (to be precise, the  3-clause license aka "New BSD License" aka "Modified BSD License".
 
 Goal
 ****
@@ -31,7 +32,7 @@ As it is a header only library, juste include the header file::
 	#include "osmpbfreader.h"
 	using namespace CanalTP;
 
-In order to use the library you need to implement a struct having the following signature::
+To use the library you need to implement a struct having the following signature::
 	
 	struct Visitor {
 	    void node_callback(uint64_t osmid, double lon, double lat, const Tags &tags){}
@@ -56,6 +57,7 @@ Call the main function with the visitor you created::
 	read_osm_pbf("your_file.osm.pbf", v);
 
 
+
 Performances
 ************
 
@@ -63,5 +65,7 @@ Just reading (and doing nothing with the data) a europe extract (8Gb) requires 1
 
 You must be very careful about the memory consumption if you plan to keep the nodes and ways on large files.
 Roughly count on 1Gb memory usage for an 100Mb .osm.pbf file.
-If you want to parse large files (like a whole continent or the planet), consider storing them on disk, for example using
+If you want to parse large files (like a whole continent or the planet), consider storing them on disk, e.g. using
 http://fallabs.com/kyotocabinet/
+
+Future work
