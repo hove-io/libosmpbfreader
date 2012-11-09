@@ -69,3 +69,9 @@ If you want to parse large files (like a whole continent or the planet), conside
 http://fallabs.com/kyotocabinet/
 
 Future work
+***********
+
+It will depend on your feedback ;)
+
+We might add some concurrency to speed up the parsing. However it will require more dependencies and will
+yield some synchronization problems in the visitor. Is it worth it?
