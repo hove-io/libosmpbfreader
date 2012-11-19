@@ -58,8 +58,6 @@ Call the main function with the visitor you created::
 	Visitor v;
 	read_osm_pbf("your_file.osm.pbf", v);
 
-
-
 Performances
 ************
 
