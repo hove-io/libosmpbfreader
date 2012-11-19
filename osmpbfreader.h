@@ -233,7 +233,7 @@ private:
 
                 for(int i = 0; i < dn.id_size(); ++i) {
                     id += dn.id(i);
-                    lon +=  0.000000001 * (primblock.lat_offset() + (primblock.granularity() * dn.lon(i)));
+                    lon +=  0.000000001 * (primblock.lon_offset() + (primblock.granularity() * dn.lon(i)));
                     lat +=  0.000000001 * (primblock.lat_offset() + (primblock.granularity() * dn.lat(i)));
 
                     Tags tags;
