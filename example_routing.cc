@@ -1,6 +1,6 @@
 /* 
 Copyright (c) 2012, Canal TP
-This is a example file, do whatever you want with it! (for example if you are in Paris, invite us to for a beer)
+This is an example file, do whatever you want with it! (for example if you are in Paris, invite us for a beer)
 
 A slightly more advanced example : we want to use OSM data to extract a graph that represents the road network 
 

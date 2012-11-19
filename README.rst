@@ -1,9 +1,9 @@
 libosmpbfreader
 ===============
 
-A simple C++ library to read OpenStreetMap binary files
+A simple C++ library to read OpenStreetMap binary files.
 
-It is released under the BSD licence (to be precise, the  3-clause license aka "New BSD License" aka "Modified BSD License".
+It is released under the BSD licence (to be precise, the 3-clause license aka "New BSD License" aka "Modified BSD License").
 
 Goal
 ****
@@ -12,6 +12,10 @@ We hope that this library will help people to parse osm.pbf files in C++.
 This library only provides a scaffold to read the data. It does no transformation.
 
 We like a lot http://dev.omniscale.net/imposm.parser/ but wanted the same thing in C++.
+
+Compared to https://github.com/joto/osmium libosmpbfreader is way less ambitious. Where Osmium
+provides a whole framework for parsing PBF files, we only provide a scaffold for reading those
+files. Our main focus was to provide a library that can be used in 10 minutes.
 
 Install
 *******
@@ -47,9 +51,7 @@ Tags and References are just typedefs::
 
 The functions are called every time a node, a way or a relation is encountered while reading the file.
 
-.. warning::
-
-	Don't expect the elements to be read in any specific order. For example the nodes of a way might not be parsed already.
+*Warning:* Don't expect the elements to be read in any specific order. For example the nodes of a way might not be parsed already.
 
 Call the main function with the visitor you created::
 	
