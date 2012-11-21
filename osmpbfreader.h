@@ -217,7 +217,7 @@ private:
             for(int i = 0; i < pg.nodes_size(); ++i) {
                 OSMPBF::Node n = pg.nodes(i);
 
-                double lon = 0.000000001 * (primblock.lat_offset() + (primblock.granularity() * n.lon())) ;
+                double lon = 0.000000001 * (primblock.lon_offset() + (primblock.granularity() * n.lon())) ;
                 double lat = 0.000000001 * (primblock.lat_offset() + (primblock.granularity() * n.lat())) ;
                 visitor.node_callback(n.id(), lon, lat, get_tags(n, primblock));
             }
