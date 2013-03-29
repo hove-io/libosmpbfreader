@@ -40,7 +40,18 @@ namespace CanalTP {
 typedef std::map<std::string, std::string> Tags;
 
 // References of a relation
-typedef std::vector<std::pair<OSMPBF::Relation::MemberType, uint64_t> > References;
+struct Reference {
+    OSMPBF::Relation::MemberType member_type; // type de la relation
+    uint64_t member_id; // OSMID
+    std::string role; // le role
+
+    Reference() {}
+    Reference(OSMPBF::Relation::MemberType member_type, uint64_t member_id, std::string role) :
+        member_type(member_type), member_id(member_id), role(role)
+    {}
+};
+
+typedef std::vector<Reference> References;
 
 // Main function
 template<typename Visitor>
@@ -215,10 +226,10 @@ private:
 
             // Simple Nodes
             for(int i = 0; i < pg.nodes_size(); ++i) {
-                OSMPBF::Node n = pg.nodes(i);
+                OSMPBF::Node n = pg.nodes(i);                
 
                 double lon = 0.000000001 * (primblock.lat_offset() + (primblock.granularity() * n.lon())) ;
-                double lat = 0.000000001 * (primblock.lat_offset() + (primblock.granularity() * n.lat())) ;
+                double lat = 0.000000001 * (primblock.lat_offset() + (primblock.granularity() * n.lat())) ;                
                 visitor.node_callback(n.id(), lon, lat, get_tags(n, primblock));
             }
 
@@ -271,7 +282,7 @@ private:
 
                 for(int l = 0; l < rel.memids_size(); ++l){
                     id += rel.memids(l);
-                    refs.push_back(std::make_pair(rel.types(l), id));
+                    refs.push_back(Reference(rel.types(l), id, primblock.stringtable().s(rel.roles_sid(l))));
                 }
 
                 visitor.relation_callback(rel.id(), get_tags(rel, primblock), refs);
