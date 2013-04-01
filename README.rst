@@ -26,6 +26,8 @@ The only dependency is libosmpbf. On debian/ubuntu just run::
 
 The library is a single header. No need to install or build anything.
 
+There is a Makefile provides that compiles the examples.
+
 Using it
 ********
 
