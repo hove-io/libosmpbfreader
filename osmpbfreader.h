@@ -24,15 +24,26 @@ ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
+#pragma once
 
 #include <stdint.h>
-#include <osmpbf/osmpbf.h>
 #include <netinet/in.h>
 #include <zlib.h>
 #include <string>
 #include <fstream>
 #include <iostream>
 
+// this describes the low-level blob storage
+#include <osmpbf/fileformat.pb.h>
+// this describes the high-level OSM objects
+#include <osmpbf/osmformat.pb.h>
+// the maximum size of a blob header in bytes
+const int max_blob_header_size = 64 * 1024; // 64 kB
+// the maximum size of an uncompressed blob in bytes
+const int max_uncompressed_blob_size = 32 * 1024 * 1024; // 32 MB
+// resolution for longitude/latitude used for conversion
+// between representation as double and as int
+const int lonlat_resolution = 1000 * 1000 * 1000; 
 
 namespace CanalTP {
 
@@ -115,8 +126,8 @@ struct Parser {
     {
         if(!file.is_open())
             fatal() << "Unable to open the file " << filename;
-        buffer = new char[OSMPBF::max_uncompressed_blob_size];
-        unpack_buffer = new char[OSMPBF::max_uncompressed_blob_size];
+        buffer = new char[max_uncompressed_blob_size];
+        unpack_buffer = new char[max_uncompressed_blob_size];
         info() << "Reading the file" << filename;
     }
 
@@ -146,8 +157,8 @@ private:
 
         sz = ntohl(sz);// convert the size from network byte-order to host byte-order
 
-        if(sz > OSMPBF::max_blob_header_size)
-            fatal() << "blob-header-size is bigger then allowed " << sz << " > " << OSMPBF::max_blob_header_size;
+        if(sz > max_blob_header_size)
+            fatal() << "blob-header-size is bigger then allowed " << sz << " > " << max_blob_header_size;
 
         this->file.read(this->buffer, sz);
         if(!this->file.good())
@@ -164,7 +175,7 @@ private:
         // size of the following blob
         int32_t sz = header.datasize();
 
-        if(sz > OSMPBF::max_uncompressed_blob_size)
+        if(sz > max_uncompressed_blob_size)
             fatal() << "blob-size is bigger then allowed";
 
         if(!this->file.read(buffer, sz))
