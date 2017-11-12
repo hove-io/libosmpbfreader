@@ -190,9 +190,9 @@ private:
 
             // check that raw_size is set correctly
             if(sz != blob.raw_size())
-                warn() << "  reports wrong raw_size: " << blob.raw_size() << " bytes";
+                warn() << "  reports wrong raw_size: " << blob.raw_size() << " bytes";			
+                memcpy(unpack_buffer, blob.raw().c_str(), sz);
 
-            memcpy(unpack_buffer, buffer, sz);
             return sz;
         }
 
