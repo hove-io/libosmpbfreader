@@ -11,10 +11,10 @@ example_counter
 
 all: $(PROGRAMS)
 
-example_routing: example_routing.cc
+example_routing: example_routing.cc osmpbfreader.h
 	$(CXX) $(CXXFLAGS) -o $@ $< $(LDFLAGS)
 
-example_counter: example_counter.cc
+example_counter: example_counter.cc osmpbfreader.h
 	$(CXX) $(CXXFLAGS) -o $@ $< $(LDFLAGS)
 
 clean:
