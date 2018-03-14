@@ -89,7 +89,7 @@ struct fatal {
 
 
 template<typename T>
-Tags get_tags(T object, const OSMPBF::PrimitiveBlock &primblock){
+Tags get_tags(const T& object, const OSMPBF::PrimitiveBlock &primblock){
     Tags result;
     for(int i = 0; i < object.keys_size(); ++i){
         uint64_t key = object.keys(i);
@@ -134,7 +134,6 @@ struct Parser {
     ~Parser(){
         delete[] buffer;
         delete[] unpack_buffer;
-        google::protobuf::ShutdownProtobufLibrary();
     }
 
 private:
@@ -233,11 +232,11 @@ private:
             fatal() << "unable to parse primitive block";
 
         for(int i = 0, l = primblock.primitivegroup_size(); i < l; i++) {
-            OSMPBF::PrimitiveGroup pg = primblock.primitivegroup(i);
+            const OSMPBF::PrimitiveGroup& pg = primblock.primitivegroup(i);
 
             // Simple Nodes
             for(int i = 0; i < pg.nodes_size(); ++i) {
-                OSMPBF::Node n = pg.nodes(i);
+                const OSMPBF::Node& n = pg.nodes(i);
 
                 double lon = 0.000000001 * (primblock.lon_offset() + (primblock.granularity() * n.lon())) ;
                 double lat = 0.000000001 * (primblock.lat_offset() + (primblock.granularity() * n.lat())) ;
@@ -246,7 +245,7 @@ private:
 
             // Dense Nodes
             if(pg.has_dense()) {
-                OSMPBF::DenseNodes dn = pg.dense();
+                const OSMPBF::DenseNodes& dn = pg.dense();
                 uint64_t id = 0;
                 double lon = 0;
                 double lat = 0;
@@ -273,7 +272,7 @@ private:
             }
 
             for(int i = 0; i < pg.ways_size(); ++i) {
-                OSMPBF::Way w = pg.ways(i);
+                const OSMPBF::Way& w = pg.ways(i);
 
                 uint64_t ref = 0;
                 std::vector<uint64_t> refs;
@@ -287,7 +286,7 @@ private:
 
 
             for(int i=0; i < pg.relations_size(); ++i){
-                OSMPBF::Relation rel = pg.relations(i);
+                const OSMPBF::Relation& rel = pg.relations(i);
                 uint64_t id = 0;
                 References refs;
 
