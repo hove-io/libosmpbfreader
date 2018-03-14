@@ -134,7 +134,6 @@ struct Parser {
     ~Parser(){
         delete[] buffer;
         delete[] unpack_buffer;
-        google::protobuf::ShutdownProtobufLibrary();
     }
 
 private:
