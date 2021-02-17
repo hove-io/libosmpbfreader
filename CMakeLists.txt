@@ -10,16 +10,18 @@ set(CMAKE_MODULE_PATH "${CMAKE_MODULE_PATH};${CMAKE_SOURCE_DIR}/cmake/modules")
 
 # Library target
 find_package(osmpbf REQUIRED)
+find_package(Protobuf REQUIRED)
 add_library(osmpbfreader INTERFACE)
 target_include_directories(osmpbfreader
   INTERFACE
     ${osmpbf_INCLUDE_DIRS}
+    ${Protobuf_INCLUDE_DIRS}
     $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}>
     $<INSTALL_INTERFACE:include>
 )
 target_compile_features(osmpbfreader INTERFACE cxx_std_11)
 target_link_libraries(osmpbfreader INTERFACE
-  protobuf-lite
+  ${Protobuf_LIBRARIES}
   z
   ${osmpbf_LIBRARIES}
 )
@@ -56,7 +58,7 @@ install(EXPORT install_targets
 )
 
 
-# Install osmpbfreader.cmake
+# Install osmpbfreaderConfig.cmake
 include(CMakePackageConfigHelpers)
 configure_package_config_file(
   ${CMAKE_CURRENT_SOURCE_DIR}/cmake/${PACKAGE_NAME}Config.cmake.in
