@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2001-2002, Hove
+Copyright (c) 2001-2022, Hove
 This is an example file, do whatever you want with it! (for example if you are in Paris, invite us for a beer)
 
 This shows the simplest way to use the osm.pbf reader. It just counts the number of objects in the file.
