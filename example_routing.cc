@@ -1,5 +1,5 @@
 /* 
-Copyright (c) 2012, Canal TP
+Copyright (c) 2001-2022, Hove
 This is an example file, do whatever you want with it! (for example if you are in Paris, invite us for a beer)
 
 A slightly more advanced example : we want to use OSM data to extract a graph that represents the road network 
@@ -12,7 +12,7 @@ To run it:
 
 #include <unordered_map>
 #include "osmpbfreader.h"
-using namespace CanalTP;
+using namespace Hove;
 
 // We keep every node and the how many times it is used in order to detect crossings
 struct Node {
