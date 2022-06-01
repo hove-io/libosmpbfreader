@@ -45,7 +45,7 @@ const int max_uncompressed_blob_size = 32 * 1024 * 1024; // 32 MB
 // between representation as double and as int
 const int lonlat_resolution = 1000 * 1000 * 1000; 
 
-namespace Hove {
+namespace osmpbfreader {
 
 // Represents the key/values of an object
 typedef std::map<std::string, std::string> Tags;

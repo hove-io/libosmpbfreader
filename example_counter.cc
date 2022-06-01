@@ -13,7 +13,7 @@ To run it:
 
 #include "osmpbfreader.h"
 
-using namespace Hove;
+using namespace osmpbfreader;
 
 // We need to define a visitor with three methods that will be called while the file is read
 struct Counter {
