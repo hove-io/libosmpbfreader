@@ -36,7 +36,7 @@ The easiest is probably to look at the examples.
 As it is a header only library, juste include the header file::
 
 	#include "osmpbfreader.h"
-	using namespace Hove;
+	using namespace osmpbfreader;
 
 To use the library you need to implement a struct having the following signature::
 	

@@ -12,7 +12,7 @@ To run it:
 
 #include <unordered_map>
 #include "osmpbfreader.h"
-using namespace Hove;
+using namespace osmpbfreader;
 
 // We keep every node and the how many times it is used in order to detect crossings
 struct Node {
