@@ -18,9 +18,9 @@ using namespace osmpbfreader;
 // We need to define a visitor with three methods that will be called while the file is read
 struct Counter {
     // Three integers count how many times each object type occurs
-    int nodes;
-    int ways;
-    int relations;
+    int64_t nodes;
+    int64_t ways;
+    int64_t relations;
 
     Counter() : nodes(0), ways(0), relations(0) {}
 
